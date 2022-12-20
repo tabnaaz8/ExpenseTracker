@@ -34,15 +34,7 @@ def home():
     else:
         currentDate = datetime.now()
         print('Month full name:', str(currentDate.strftime('%B')))
-        # print(" Current date ", currentDate.month)
-        # m = currentDate.month
-        # print(datetime.strptime(m, '%B').month)
-        # 2022 - 12 - 12 - py
-        # 12/22/2022- js date
-        #    budget = Budget.query.filter_by(author=current_user.id,).all()
 
-        # budget = Budget(budget_id = q.budget_id,year = q.year,month = q.month,author = q.author,amount = q.amount)
-        # return render_template("home.html", user=current_user, budget=budget,month= currentDate.month,year=currentDate.year)
         monthly_budget = get_monthly_budget(str(currentDate.strftime('%B')), currentDate.year)
 
         monthly_expenses = get_monthly_expense(currentDate.month, currentDate.year)
@@ -215,14 +207,12 @@ def get_expense_by_category():
     return render_template("expense_category.html", expense=expense, user=current_user)
 
 
-
 @views.route("/savings")
 @login_required
 def get_savings():
     expense = Expense.query.filter(Expense.author == current_user.id).all()
     budget = Budget.query.filter(Budget.author == current_user.id).all()
-    return render_template("savings.html", expense=expense, budget = budget, user=current_user)
-
+    return render_template("savings.html", expense=expense, budget=budget, user=current_user)
 
 
 @login_required

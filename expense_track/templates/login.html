@@ -1,49 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-
+<script>
+   $(document).ready(function(){
+   window.history.replaceState('','',window.location.href)
+   });
+</script>
 <form method="POST">
     <div class="row">
-        <!-- <div class="col-md-6">
-             &lt;!&ndash;        <image href="expense_track/static/img/download.png"></image>&ndash;&gt;
-             &lt;!&ndash;        <img style="height: 500px;&ndash;&gt;
-             &lt;!&ndash;    width: 500px;" src="{{ url_for('static', filename='img/Calculation.png') }}" />&ndash;&gt;
-             <div class="carousel slide" data-ride="carousel" id="myCarousel">
-                 &lt;!&ndash; Indicators &ndash;&gt;
-                 <ol class="carousel-indicators">
-                     <li class="active" data-slide-to="0" data-target="#myCarousel"></li>
-                     <li data-slide-to="1" data-target="#myCarousel"></li>
-                     <li data-slide-to="2" data-target="#myCarousel"></li>
-                 </ol>
-
-                 &lt;!&ndash; Wrapper for slides &ndash;&gt;
-                 <div class="carousel-inner">
-                     <div class="item active">
-                         <img alt="Los Angeles" src="{{ url_for('static', filename='img/Calculation.png') }}" style="width:100%;">
-                         <h3> Signup with us to track your budget! </h3>
-                     </div>
-
-                     <div class="item">
-                         <img alt="Chicago" src="{{ url_for('static', filename='img/img2.png') }}" style="width:100%;">
-                     </div>
-
-
-                     <div class="item">
-                         <img alt="New york" src="{{ url_for('static', filename='img/img1.png') }}"style="width:100%;">
-                     </div>
-                 </div>
-
-                 &lt;!&ndash; Left and right controls &ndash;&gt;
-                 <a class="left carousel-control" data-slide="prev" href="#myCarousel">
-                     <span class="glyphicon glyphicon-chevron-left"></span>
-                     <span class="sr-only">Previous</span>
-                 </a>
-                 <a class="right carousel-control" data-slide="next" href="#myCarousel">
-                     <span class="glyphicon glyphicon-chevron-right"></span>
-                     <span class="sr-only">Next</span>
-                 </a>
-             </div>
-         </div>-->
         <div class="col-md-6">
             <img src="{{ url_for('static', filename='img/Plain.png') }}" style="height: 500px;&ndash;&gt;
                width: 500px;"/>
