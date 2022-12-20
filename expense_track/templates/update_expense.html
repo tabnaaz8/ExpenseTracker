@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+Update Expense
+{% endblock %}
+{% block content %}
+<form method="POST">
+
+    <h3 align="center"> Update Expense</h3>
+    <div class="form-group">
+
+        <select aria-label="Default select example" class="form-select" id="category" name="category">
+            <option selected >{{expense.category}}</option>
+            {% for c in category%}
+            <option value={{c}}>{{c}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="note">Note</label>
+        <input aria-label="readonly input example" class="form-control" id="note" required name="note" placeholder="Add a note"
+               type="text" value ={{expense.comments}}>
+
+        <label for="amount">Amount</label>
+        <input class="form-control" id="amount" name="amount" placeholder="Enter amount" required type="text" value={{expense.amount}}>
+        <br/>
+        <div align="center">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

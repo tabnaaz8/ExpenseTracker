@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<form method="POST">
+
+    <h3 align="center"> UPDATE BUDGET</h3>
+    <div class="form-group">
+
+        <label for="month">Month</label>
+        <input class="form-control" type="text" id="month" name="month" value={{budget.month}} aria-label="readonly input example" readonly>
+<!--        <select aria-label="Default select example" class="form-select" disabled id="month" name="month">-->
+<!--            <option  value="{{mon}}" selected>{{month}}</option>-->
+            <!--            <option value="1">Jan</option>-->
+            <!--            <option value="2">February</option>-->
+            <!--            <option value="3">March</option>-->
+            <!--            <option value="4">April</option>-->
+            <!--            <option value="5">May</option>-->
+            <!--            <option value="6">June</option>-->
+            <!--            <option value="7">July</option>-->
+            <!--            <option value="8">August</option>-->
+            <!--            <option value="9">September</option>-->
+            <!--            <option value="10">October</option>-->
+            <!--            <option value="11">November</option>-->
+            <!--            <option value="12">December</option>
+        </select>-->
+
+        <label for="year">Year</label>
+        <input class="form-control" type="text" id="year" name="year" value={{budget.year}} aria-label="readonly input example"  readonly>
+        <!--<input class="form-control" disabled  placeholder="Enter year" type="text" value={{year}}>-->
+
+        <label for="amount">Amount</label>
+        <input class="form-control" id="amount" name="amount" value = {{budget.amount}} required type="text"/>
+        <br/>
+        <div align="center">
+            <button class="btn btn-primary" type="submit"> Update Budget</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

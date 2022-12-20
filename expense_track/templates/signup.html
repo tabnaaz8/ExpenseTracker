@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<form method="POST">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ url_for('static', filename='img/credit.png') }}" style="height: 500px;&ndash;&gt;
+               width: 500px;"/>
+
+        </div>
+        <div class="col-md-6" style="margin-top:150px;">
+            <h3 align="center">Sign Up</h3>
+            <div class="form-group">
+
+                <label for="email">Email Address</label>
+                <input class="form-control" id="email" name="email" placeholder="Enter Email" required type="email"/>
+
+                <label for="username">Username</label>
+                <input class="form-control" id="username" name="username" placeholder="Enter Username" required
+                       type="text"/>
+
+                <label for="password1">Password</label>
+                <input class="form-control" id="password1" name="password1" placeholder="Enter Password" required
+                       type="password"/>
+
+                <label for="password2">Password Again</label>
+                <input class="form-control" id="password2" name="password2" placeholder="Enter Password Again" required
+                       type="password"/>
+                <br/>
+
+                <div align="center">
+                    <button class="btn btn-primary" type="submit">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}

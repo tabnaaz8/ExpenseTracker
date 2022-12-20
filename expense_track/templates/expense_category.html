@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}
+Expense History
+{% endblock %}
+{% block content%}
+</br>
+
+
+<form method="POST">
+    <div class="form-group">
+        <input autocomplete="off" checked class="btn-check" id="option1" name="options" type="radio">
+        <label class="btn btn-secondary" for="option1">Expense By Date </label>
+
+        <input autocomplete="off" class="btn-check" id="option2" name="options" type="radio">
+        <label class="btn btn-secondary" for="option2">Expense By Category</label>
+    </div>
+
+</form>
+
+</br>
+<table class="table">
+    <thead>
+    <tr>
+
+        <th scope="col">Category</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for category, items in expense|groupby("category") %}
+    <tr>
+
+        <td>{{category}}</td>
+        <!--   {% for e in items %}
+           <td>{{ e.amount}}</td>
+           {% endfor %}-->
+        <td>{{ items|sum(attribute='amount') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+Expense History
+{% endblock %}
+{% block content%}
+
+</br>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Month</th>
+        <th scope="col">Year</th>
+        <th scope="col">Budget</th>
+        <th scope="col">Expense</th>
+        <th scope="col">Savings </th>
+    </tr>
+    </thead>
+   <!-- <tbody>
+    {% for b, items in expense|groupby("budget") %}
+    <tr>
+        {% for budget in budget %}
+            {% if budget.budget_id == items.budget %}
+                <td>{{budget.amount}}</td>
+            {% endif %}
+        {% endfor %}
+        <td>{{ items|sum(attribute='amount') }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>-->
+    <tbody>
+        {% for b in budget %}
+        <tr>
+        <td>{{b.month}}</td>
+        <td>{{b.year}}</td>
+        <td>{{b.amount}}</td>
+        {% for budget, items in expense|groupby("budget") | sort(attribute="budget") %}
+                {% if budget == b.budget_id %}
+                <td>{{ items|sum(attribute='amount') }}</td>
+                 <td> {{ (b.amount) - (items|sum(attribute='amount')) }}</td>
+                {% endif %}
+            {% endfor %}
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

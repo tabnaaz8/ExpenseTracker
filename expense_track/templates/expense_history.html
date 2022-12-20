@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}
+Expense History
+{% endblock %}
+{% block content%}
+</br>
+
+
+<div class="dropdown">
+                <a aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                   href="#"
+                   role="button">
+                    Action
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item"
+                           href="">By DATE</a>
+                    </li>
+                    <li><a class="dropdown-item" href=""> By CATEGORY</a></li>
+                </ul>
+            </div>
+
+</br>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Category</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for expense in expense %}
+    <tr>
+        <td>{{expense.expense_date}}</td>
+        <td>{{expense.category}}</td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.comments}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}
+Add Expense
+{% endblock %}
+{% block content %}
+<form method="POST">
+
+    <h3 align="center"> Add Expense</h3>
+    <div class="form-group">
+
+        <label for="category"> Select expense category: </label>
+        <select aria-label="Default select example" class="form-select" id="category" name="category">
+            {% for c in category%}
+            <option value={{c}}>{{c}}</option>
+            {% endfor %}
+        </select>
+
+        <br/>
+
+        <label for="note">Note</label>
+        <input aria-label="readonly input example" class="form-control" id="note" name="note" placeholder="Add a note"
+               required type="text">
+
+        <br/>
+
+        <label for="amount">Amount</label>
+        <input class="form-control" id="amount" name="amount" placeholder="Enter amount" required type="text"/>
+
+        <br/>
+
+        <label for="datepicker">Select Date</label> <br/>
+        <input id="datepicker" name="datepicker" required type="text"/>
+
+
+        <input hidden id="start_date" name="" type="text" value="{{start_date}}">
+        <input hidden id="end_date" name="" type="text" value="{{end_date}}">
+
+        <script>
+            let sd = document.getElementById('start_date').value
+            let ed = document.getElementById('end_date').value
+            console.log(sd)
+            const d = new Date(sd);
+            console.log(d)
+            const d1 = new Date("2022-11-30");
+            const d2 = new Date(ed);
+            console.log(d2)
+        $( function() {
+        $( "#datepicker" ).datepicker({ minDate : d ,maxDate : d2 });
+        } );
+
+
+        </script>
+        <br/>
+        <br/>
+        <div align="center">
+            <button class="btn btn-primary" type="submit"> Add Expense</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

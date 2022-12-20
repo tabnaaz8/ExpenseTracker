@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content%}
+
+
+<form method="POST">
+    <div class="form-group" style="display: flex;">
+
+        <select aria-label="Default select example" class="form-select"
+                id="month_name" name="month_name" selected="December" style="margin: 1rem; width: 130px; height: 40px;">
+            {% for month in months %}
+            <option value={{month}}>{{month}}</option>
+            {% endfor %}
+        </select>
+
+        <select aria-label="Default select example" class="form-select"
+                id="year1" name="year1" selected="2022" style="margin: 1rem;  width: 130px;  height: 40px;">
+            {% for year in years %}
+            <option value={{year}}>{{year}}</option>
+            {% endfor %}
+        </select>
+
+        <div align="center">
+            <button class="btn btn-primary" style="border-radius: 12px; margin: 1rem; width: 100%;" type="submit"> SHOW
+                EXPENSES
+            </button>
+        </div>
+
+    </div>
+
+</form>
+
+</br>
+
+<div class="row">
+    <!--<div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                {% if budget %}
+                <h5 class="card-title">BUDGET for {{budget.month}}</h5>
+                <p class="card-text">{{budget.amount}}</p>
+                <a class="btn btn-primary" href="/update-budget/{{budget.budget_id}}">Update</a>
+                {% else %}
+                <h5 class="card-title">Budget for the month {{selected_month }} is not added</h5>
+                <p class="card-text"></p>
+                <a class="btn btn-primary" href="/setbudget/{{selected_month}}/{{selected_year}}">SET BUDGET</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>-->
+    <!--    <div class="col-sm-6">-->
+
+    <div class="col-sm-6">
+        <div class="card text-center">
+            {% if budget %}
+            <div class="card-header">
+                {{budget.month}} {{selected_year}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">TRACKER</h5>
+                <p class="card-text"> BUDGET : {{budget.amount}} </p>
+                <p class="card-text"> EXPENSES : {{ expense|sum(attribute='amount') }} </p>
+                <a class="btn btn-secondary"
+                   href="/update-budget/{{budget.budget_id}}/{{budget.month}}/{{budget.year}}">Update Budget</a>
+            </div>
+            <div class="card-footer text-muted">
+                BALANCE : {{ (budget.amount) - (expense|sum(attribute='amount')) }}
+            </div>
+            {% else %}
+            <div class="card-header">
+                {{selected_month}} {{selected_year}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> NO BUDGET ADDED !</h5>
+                <a class="btn btn-secondary" href="/setbudget/{{selected_month}}/{{selected_year}}">SET BUDGET</a>
+            </div>
+            <div class="card-footer text-muted">
+                Please set your budget to start adding your expense
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card text-center">
+            {% if budget %}
+            <div class="card-header">
+                {{budget.month}} {{selected_year}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">CATEGORIES </h5>
+                {% for category, items in expense|groupby("category") %}
+                <p class="card-text"> {{category}} : {{ items|sum(attribute='amount') }} </p>
+                {% endfor %}
+            </div>
+            <div class="card-footer text-muted">
+                 tracker
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+</br>
+
+{% if budget.amount %}
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a class="btn btn-secondary" href="/add-expense/{{selected_month}}/{{selected_year}}">Add Expense</a>
+</div>
+
+
+</br>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Category</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Note</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for expense in expense %}
+    <tr>
+        <td>{{expense.expense_date}}</td>
+        <td>{{expense.category}}</td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.comments}}</td>
+        <td>
+            <div class="dropdown">
+                <a aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                   href="#"
+                   role="button">
+                    Action
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item"
+                           href="/update-expense/{{expense.expense_id}}/{{selected_month}}/{{selected_year}}">Update</a>
+                    </li>
+                    <li><a class="dropdown-item" href="/delete-expense/{{expense.expense_id}}">Delete</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+
+{% endif %}
+
+{% endblock %}
